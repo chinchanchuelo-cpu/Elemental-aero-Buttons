@@ -1,0 +1,291 @@
+/* ============================================================
+   AERO ELEMENTAL BUTTONS — Sistema CSS Optimizado (2026)
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   BASE & COMPORTAMIENTO NATIVO AERO
+   ------------------------------------------------------------ */
+.btn-aero-fire {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #FFE6D5;
+  padding: 9px 22px;
+  min-height: 34px;
+  cursor: pointer;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #6a2010;
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease-in-out, background-position 0s;
+
+  /* Variante base: INFERNO */
+  background: linear-gradient(to bottom,
+    #ffdd00 0%,
+    #ff7700 48%,
+    #cc0000 50%,
+    #ff3300 100%
+  );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 1px 3px rgba(0, 0, 0, 0.5),
+    0 0 14px rgba(255, 100, 0, 0.35);
+}
+
+/* Efecto Destello Aero (Glint) */
+.btn-aero-fire::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -70%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 80%
+  );
+  transition: left 0.5s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.btn-aero-fire:hover::before {
+  left: 140%;
+}
+
+/* Reflejo Radial de Calor Superior */
+.btn-aero-fire::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(255, 230, 0, 0.25) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.btn-aero-fire:hover::after {
+  opacity: 1;
+}
+
+/* Hover Base (Inferno) */
+.btn-aero-fire:hover {
+  border-color: #ffdd00;
+  color: #ffffff;
+  background: linear-gradient(to bottom,
+    #fff5cc 0%,
+    #ffaa00 48%,
+    #e60000 50%,
+    #ff5500 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    0 0 16px #ff7700,
+    0 0 32px #ff002a,
+    0 0 6px #ffcc00;
+  transform: translateY(-2px);
+}
+
+/* Active Base (Inferno) */
+.btn-aero-fire:active {
+  border-color: #990000;
+  color: #ffaa80;
+  transform: translateY(1px) scale(0.97);
+  background: linear-gradient(to bottom,
+    #9a1800 0%,
+    #6b1000 48%,
+    #550000 50%,
+    #881800 100%
+  );
+  box-shadow:
+    inset 0 3px 6px rgba(0, 0, 0, 0.7),
+    0 0 10px #ff2200;
+}
+
+/* El clásico anillo de selección Aero Focus */
+.btn-aero-fire:focus-visible {
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 221, 0, 0.8),
+    inset 0 2px 0 rgba(255, 255, 255, 0.4),
+    0 0 8px rgba(255, 119, 0, 0.8);
+}
+
+/* Disabled */
+.btn-aero-fire:disabled,
+.btn-aero-fire.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: grayscale(0.8) contrast(0.9);
+  transform: none !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2) !important;
+  animation: none !important;
+}
+
+/* ------------------------------------------------------------
+   TAMAÑOS MODULARES
+   ------------------------------------------------------------ */
+.btn-sm { font-size: 11px; padding: 5px 14px; min-height: 26px; letter-spacing: 0.8px; border-radius: 4px; }
+.btn-lg { font-size: 15px; padding: 12px 32px; min-height: 44px; }
+.btn-xl { font-size: 17px; padding: 15px 44px; min-height: 52px; letter-spacing: 1.5px; border-radius: 7px; }
+.btn-wide { width: 100%; justify-content: center; }
+
+/* ------------------------------------------------------------
+   VARIANTE: OBSIDIAN (Carbón de Magma)
+   ------------------------------------------------------------ */
+.btn-obsidian {
+  border-color: #3a1510;
+  color: #ff9955;
+  background: linear-gradient(to bottom, #3a1a00 0%, #1f0a00 48%, #0d0000 50%, #220800 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 100, 30, 0.25), 0 0 14px rgba(180, 40, 0, 0.25), 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+.btn-obsidian::after { background: radial-gradient(ellipse at 50% 0%, rgba(255, 85, 0, 0.2) 0%, transparent 70%); }
+.btn-obsidian:hover {
+  border-color: #ff5500; color: #ffddaa;
+  background: linear-gradient(to bottom, #5a2c00 0%, #3a1400 48%, #1f0500 50%, #401000 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 150, 50, 0.35), 0 0 20px #cc3300, 0 0 40px rgba(200, 40, 0, 0.3);
+}
+.btn-obsidian:active {
+  border-color: #1a0500;
+  background: linear-gradient(to bottom, #100300 0%, #050000 50%, #0a0200 100%);
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.85);
+}
+
+/* ------------------------------------------------------------
+   VARIANTE: MOLTEN GOLD (Oro Líquido)
+   ------------------------------------------------------------ */
+.btn-gold {
+  border-color: #664d00; color: #2a1800; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+  background: linear-gradient(to bottom, #fffbdd 0%, #ffd700 48%, #b8860b 50%, #daa520 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 0 12px rgba(255, 200, 0, 0.35);
+}
+.btn-gold::after { background: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.4) 0%, transparent 70%); }
+.btn-gold:hover {
+  border-color: #ffd700; color: #000000;
+  background: linear-gradient(to bottom, #ffffff 0%, #ffe44d 48%, #cc9900 50%, #f0c000 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 0 20px #ffc000, 0 0 35px rgba(255, 180, 0, 0.4);
+}
+.btn-gold:active {
+  border-color: #4a3600; color: #ffd700;
+  background: linear-gradient(to bottom, #a07800 0%, #705400 50%, #8a6500 100%);
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.5);
+}
+
+/* ------------------------------------------------------------
+   VARIANTE: CRYO ICE (Fuego Azul / Escarcha)
+   ------------------------------------------------------------ */
+.btn-ice {
+  border-color: #1a4473; color: #001133; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background: linear-gradient(to bottom, #ffffff 0%, #c8eeff 48%, #5599cc 50%, #99ccff 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 0 12px rgba(100, 180, 255, 0.35);
+}
+.btn-ice::after { background: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.6) 0%, transparent 70%); }
+.btn-ice:hover {
+  border-color: #44aaff; color: #00122c;
+  background: linear-gradient(to bottom, #ffffff 0%, #ddf4ff 48%, #3388dd 50%, #aaddff 100%);
+  box-shadow: inset 0 1px 0 #ffffff, 0 0 20px #66bbff, 0 0 35px rgba(50, 150, 255, 0.4);
+}
+.btn-ice:active {
+  border-color: #0b224a; color: #aaddff;
+  background: linear-gradient(to bottom, #2255aa 0%, #113377 50%, #1a3a78 100%);
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.5);
+}
+
+/* ------------------------------------------------------------
+   VARIANTE: GHOST FLAME (Fuego Fatuo Semitransparente)
+   ------------------------------------------------------------ */
+.btn-ghost {
+  background: rgba(200, 60, 0, 0.06);
+  border: 1px solid rgba(204, 68, 0, 0.6);
+  color: #ff8844;
+  text-shadow: 0 0 6px rgba(255, 120, 0, 0.5);
+  box-shadow: 0 0 10px rgba(200, 60, 0, 0.15), inset 0 0 12px rgba(200, 60, 0, 0.1);
+}
+.btn-ghost::after { display: none; }
+.btn-ghost:hover {
+  background: linear-gradient(to bottom, rgba(255, 100, 0, 0.18) 0%, rgba(200, 0, 0, 0.18) 100%);
+  border-color: #ff8800; color: #ffcc88;
+  box-shadow: 0 0 20px rgba(255, 102, 0, 0.6), 0 0 6px #ff3300;
+}
+.btn-ghost:active {
+  background: rgba(150, 30, 0, 0.25);
+  border-color: #aa3300;
+}
+
+/* ------------------------------------------------------------
+   COMPLEMENTOS: ÍCONOS & TOGGLE (Estados Avanzados)
+   ------------------------------------------------------------ */
+.btn-icon { gap: 8px; padding-left: 16px; }
+.btn-icon .ico { font-size: 14px; display: inline-block; transition: transform 0.2s; }
+.btn-icon:hover .ico { transform: scale(1.15); }
+
+.btn-toggle.on {
+  background: linear-gradient(to bottom, #88ff44 0%, #44cc00 48%, #1e7700 50%, #44aa00 100%);
+  border-color: #3b8800; color: #001a00; text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 16px #44ff00, 0 0 25px rgba(0, 200, 0, 0.3);
+}
+.btn-toggle.on::after { background: radial-gradient(ellipse at 50% 0%, rgba(200, 255, 100, 0.4) 0%, transparent 70%); }
+.btn-toggle.on:hover {
+  background: linear-gradient(to bottom, #bdff99 0%, #55dd00 48%, #259900 50%, #55cc00 100%);
+  border-color: #55cc00; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 0 22px #55ff00, 0 0 40px #228800;
+}
+
+/* ------------------------------------------------------------
+   ANIMACIONES DINÁMICAS (Heredan colores contextuales)
+   ------------------------------------------------------------ */
+
+/* Pulse */
+.btn-pulse { animation: aeroPulse 2s infinite alternate ease-in-out; }
+@keyframes aeroPulse {
+  0% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 0 10px rgba(255,100,0,0.3); }
+  100% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 0 22px rgba(255,150,0,0.8), 0 0 35px rgba(255,0,50,0.5); }
+}
+/* Forzar variables de pulso adaptativas para Ice e Obsidian */
+.btn-ice.btn-pulse { animation-name: aeroPulseIce; }
+@keyframes aeroPulseIce {
+  0% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 0 10px rgba(100,180,255,0.3); }
+  100% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 0 22px #55aaff, 0 0 35px #2255aa; }
+}
+
+/* Charge (Inyección en la base del cristal) */
+.btn-charge::before { display: none; } /* Desactiva glint para no romper la transición */
+.btn-charge .charge-bar {
+  position: absolute;
+  bottom: 0; left: 0; height: 3px; width: 0%;
+  background: linear-gradient(to right, #ffff00, #ff6600, #ff0000);
+  box-shadow: 0 -1px 6px #ff9900;
+  animation: chargeUp 2.5s infinite linear;
+  z-index: 3;
+}
+.btn-ice .charge-bar { background: linear-gradient(to right, #ffffff, #88ddff, #0055cc); box-shadow: 0 -1px 6px #33aaff; }
+@keyframes chargeUp {
+  0% { width: 0%; opacity: 0.2; }
+  10% { opacity: 1; }
+  80% { width: 100%; opacity: 1; }
+  90% { width: 100%; opacity: 0; }
+  100% { width: 0%; opacity: 0; }
+}
+
+/* Ember (Parpadeo termo-cristalino rápido) */
+.btn-ember { animation: emberFlicker 0.15s infinite alternate ease-in-out; }
+@keyframes emberFlicker {
+  0% { filter: brightness(0.95) contrast(1); }
+  100% { filter: brightness(1.1) contrast(1.05); box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 0 18px rgba(255,100,0,0.6); }
+}

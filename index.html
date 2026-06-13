@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aero Elemental Buttons — Documentación</title>
+<link rel="icon" type="image/x-icon" href="fuego.ico">
+<style>
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0606;
+  --bg2: #110808;
+  --bg3: #181010;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text: #e8ddd8;
+  --text2: #9a8880;
+  --accent: #ff7700;
+  --accent2: #ffcc00;
+  --code-bg: #0d0909;
+  --code-border: rgba(255,100,0,0.2);
+  --radius: 8px;
+  --radius-lg: 12px;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ── Hero ── */
+.hero {
+  text-align: center;
+  padding: 72px 24px 60px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(255,100,0,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 30% 100%, rgba(200,30,0,0.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid rgba(255,119,0,0.3);
+  border-radius: 20px;
+  padding: 4px 14px;
+  margin-bottom: 22px;
+  background: rgba(255,100,0,0.06);
+}
+
+.hero h1 {
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 800;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #ffdd00 0%, #ff8800 35%, #ff3300 65%, #cc0055 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+  margin-bottom: 18px;
+}
+
+.hero p {
+  color: var(--text2);
+  max-width: 560px;
+  margin: 0 auto 32px;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── Nav ── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10,6,6,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+
+.nav a {
+  display: inline-block;
+  padding: 14px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text2);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s;
+}
+.nav a:hover { color: var(--accent); border-bottom-color: rgba(255,119,0,0.4); }
+
+/* ── Layout ── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px 80px;
+}
+
+/* ── Section ── */
+.section {
+  padding-top: 64px;
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(255,100,0,0.08);
+  border: 1px solid rgba(255,100,0,0.2);
+  border-radius: 4px;
+  padding: 3px 8px;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ── Card ── */
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.card p + p { margin-top: 12px; }
+.card ul { padding-left: 20px; }
+.card li { margin: 6px 0; color: var(--text2); }
+.card li::marker { color: var(--accent); }
+.card li strong { color: var(--text); }
+
+/* ── Demo area ── */
+.demo-area {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin-bottom: 12px;
+}
+
+.demo-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+
+/* ── Grid ── */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+/* ── Code ── */
+.code-block {
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  overflow-x: auto;
+  font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: #ff9966;
+  tab-size: 2;
+}
+
+.code-block .kw { color: #ffcc44; }
+.code-block .cls { color: #44ccff; }
+.code-block .str { color: #88ff88; }
+.code-block .tag { color: #ff8866; }
+.code-block .attr { color: #ffee88; }
+
+/* ── Table ── */
+.ref-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.ref-table th, .ref-table td {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.ref-table th {
+  background: var(--bg3);
+  color: var(--text2);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.ref-table td:first-child {
+  font-family: 'Cascadia Code', Consolas, monospace;
+  font-size: 12px;
+  color: #44ccff;
+}
+.ref-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+/* ── Divider ── */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 48px 0;
+}
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 32px;
+  border-top: 1px solid var(--border);
+  color: var(--text2);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+.footer span { color: var(--accent); }
+
+/* ── Tag chips ── */
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: rgba(255,100,0,0.08);
+  border: 1px solid rgba(255,100,0,0.2);
+  color: #ff9955;
+}
+
+/* ── Inline code ── */
+code {
+  font-family: 'Cascadia Code', Consolas, monospace;
+  font-size: 12px;
+  background: rgba(255,80,0,0.1);
+  border: 1px solid rgba(255,80,0,0.2);
+  border-radius: 3px;
+  padding: 1px 6px;
+  color: #ff9966;
+}
+
+/* ============================================================
+   AERO ELEMENTAL BUTTONS — Sistema CSS
+   ============================================================ */
+
+/* ── BASE ── */
+.btn-aero-fire {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #FFE6D5;
+  padding: 9px 22px;
+  min-height: 34px;
+  cursor: pointer;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #6a2010;
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  transition: all 0.2s ease-in-out;
+  background: linear-gradient(to bottom, #ffdd00 0%, #ff7700 48%, #cc0000 50%, #ff3300 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.45),
+    inset 0 -1px 0 rgba(0,0,0,0.2),
+    0 1px 3px rgba(0,0,0,0.5),
+    0 0 14px rgba(255,100,0,0.35);
+}
+
+.btn-aero-fire::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -70%;
+  width: 60%; height: 100%;
+  background: linear-gradient(105deg, transparent 20%, rgba(255,255,255,0.25) 50%, transparent 80%);
+  transition: left 0.5s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+.btn-aero-fire:hover::before { left: 140%; }
+
+.btn-aero-fire::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255,230,0,0.25) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+.btn-aero-fire:hover::after { opacity: 1; }
+
+.btn-aero-fire:hover {
+  border-color: #ffdd00;
+  color: #ffffff;
+  background: linear-gradient(to bottom, #fff5cc 0%, #ffaa00 48%, #e60000 50%, #ff5500 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.65),
+    0 0 16px #ff7700,
+    0 0 32px #ff002a,
+    0 0 6px #ffcc00;
+  transform: translateY(-2px);
+}
+.btn-aero-fire:active {
+  border-color: #990000;
+  color: #ffaa80;
+  transform: translateY(1px) scale(0.97);
+  background: linear-gradient(to bottom, #9a1800 0%, #6b1000 48%, #550000 50%, #881800 100%);
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.7), 0 0 10px #ff2200;
+}
+.btn-aero-fire:focus-visible {
+  box-shadow:
+    inset 0 0 0 1px rgba(255,221,0,0.8),
+    inset 0 2px 0 rgba(255,255,255,0.4),
+    0 0 8px rgba(255,119,0,0.8);
+}
+.btn-aero-fire:disabled,
+.btn-aero-fire.disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+  filter: grayscale(0.8) contrast(0.9);
+  transform: none !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2) !important;
+  animation: none !important;
+}
+
+/* ── TAMAÑOS ── */
+.btn-sm  { font-size: 11px; padding: 5px 14px; min-height: 26px; letter-spacing: 0.8px; border-radius: 4px; }
+.btn-lg  { font-size: 15px; padding: 12px 32px; min-height: 44px; }
+.btn-xl  { font-size: 17px; padding: 15px 44px; min-height: 52px; letter-spacing: 1.5px; border-radius: 7px; }
+.btn-wide { width: 100%; justify-content: center; }
+
+/* ── OBSIDIAN ── */
+.btn-obsidian {
+  border-color: #3a1510;
+  color: #ff9955;
+  background: linear-gradient(to bottom, #3a1a00 0%, #1f0a00 48%, #0d0000 50%, #220800 100%);
+  box-shadow: inset 0 1px 0 rgba(255,100,30,0.25), 0 0 14px rgba(180,40,0,0.25), 0 1px 3px rgba(0,0,0,0.7);
+}
+.btn-obsidian::after { background: radial-gradient(ellipse at 50% 0%, rgba(255,85,0,0.2) 0%, transparent 70%); }
+.btn-obsidian:hover {
+  border-color: #ff5500; color: #ffddaa;
+  background: linear-gradient(to bottom, #5a2c00 0%, #3a1400 48%, #1f0500 50%, #401000 100%);
+  box-shadow: inset 0 1px 0 rgba(255,150,50,0.35), 0 0 20px #cc3300, 0 0 40px rgba(200,40,0,0.3);
+}
+.btn-obsidian:active {
+  border-color: #1a0500;
+  background: linear-gradient(to bottom, #100300 0%, #050000 50%, #0a0200 100%);
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.85);
+}
+
+/* ── MOLTEN GOLD ── */
+.btn-gold {
+  border-color: #664d00; color: #2a1800; text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+  background: linear-gradient(to bottom, #fffbdd 0%, #ffd700 48%, #b8860b 50%, #daa520 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 0 12px rgba(255,200,0,0.35);
+}
+.btn-gold::after { background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.4) 0%, transparent 70%); }
+.btn-gold:hover {
+  border-color: #ffd700; color: #000000;
+  background: linear-gradient(to bottom, #ffffff 0%, #ffe44d 48%, #cc9900 50%, #f0c000 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 0 20px #ffc000, 0 0 35px rgba(255,180,0,0.4);
+}
+.btn-gold:active {
+  border-color: #4a3600; color: #ffd700;
+  background: linear-gradient(to bottom, #a07800 0%, #705400 50%, #8a6500 100%);
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.5);
+}
+
+/* ── CRYO ICE ── */
+.btn-ice {
+  border-color: #1a4473; color: #001133; text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+  background: linear-gradient(to bottom, #ffffff 0%, #c8eeff 48%, #5599cc 50%, #99ccff 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 0 12px rgba(100,180,255,0.35);
+}
+.btn-ice::after { background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.6) 0%, transparent 70%); }
+.btn-ice:hover {
+  border-color: #44aaff; color: #00122c;
+  background: linear-gradient(to bottom, #ffffff 0%, #ddf4ff 48%, #3388dd 50%, #aaddff 100%);
+  box-shadow: inset 0 1px 0 #ffffff, 0 0 20px #66bbff, 0 0 35px rgba(50,150,255,0.4);
+}
+.btn-ice:active {
+  border-color: #0b224a; color: #aaddff;
+  background: linear-gradient(to bottom, #2255aa 0%, #113377 50%, #1a3a78 100%);
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.5);
+}
+
+/* ── GHOST ── */
+.btn-ghost {
+  background: rgba(200,60,0,0.06);
+  border: 1px solid rgba(204,68,0,0.6);
+  color: #ff8844;
+  text-shadow: 0 0 6px rgba(255,120,0,0.5);
+  box-shadow: 0 0 10px rgba(200,60,0,0.15), inset 0 0 12px rgba(200,60,0,0.1);
+}
+.btn-ghost::after { display: none; }
+.btn-ghost:hover {
+  background: linear-gradient(to bottom, rgba(255,100,0,0.18) 0%, rgba(200,0,0,0.18) 100%);
+  border-color: #ff8800; color: #ffcc88;
+  box-shadow: 0 0 20px rgba(255,102,0,0.6), 0 0 6px #ff3300;
+}
+.btn-ghost:active {
+  background: rgba(150,30,0,0.25);
+  border-color: #aa3300;
+}
+
+/* ── TOGGLE ── */
+.btn-toggle.on {
+  background: linear-gradient(to bottom, #88ff44 0%, #44cc00 48%, #1e7700 50%, #44aa00 100%);
+  border-color: #3b8800; color: #001a00; text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 0 16px #44ff00, 0 0 25px rgba(0,200,0,0.3);
+}
+.btn-toggle.on::after { background: radial-gradient(ellipse at 50% 0%, rgba(200,255,100,0.4) 0%, transparent 70%); }
+.btn-toggle.on:hover {
+  background: linear-gradient(to bottom, #bdff99 0%, #55dd00 48%, #259900 50%, #55cc00 100%);
+  border-color: #55cc00;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 0 22px #55ff00, 0 0 40px #228800;
+}
+
+/* ── ICON ── */
+.btn-icon { gap: 8px; padding-left: 16px; }
+.btn-icon .ico { font-size: 14px; display: inline-block; transition: transform 0.2s; }
+.btn-icon:hover .ico { transform: scale(1.15); }
+
+/* ── ANIMACIONES ── */
+.btn-pulse { animation: aeroPulse 2s infinite alternate ease-in-out; }
+@keyframes aeroPulse {
+  0%   { box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 0 10px rgba(255,100,0,0.3); }
+  100% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 0 22px rgba(255,150,0,0.8), 0 0 35px rgba(255,0,50,0.5); }
+}
+.btn-ice.btn-pulse { animation-name: aeroPulseIce; }
+@keyframes aeroPulseIce {
+  0%   { box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 0 10px rgba(100,180,255,0.3); }
+  100% { box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 0 22px #55aaff, 0 0 35px #2255aa; }
+}
+
+.btn-charge::before { display: none; }
+.btn-charge .charge-bar {
+  position: absolute;
+  bottom: 0; left: 0; height: 3px; width: 0%;
+  background: linear-gradient(to right, #ffff00, #ff6600, #ff0000);
+  box-shadow: 0 -1px 6px #ff9900;
+  animation: chargeUp 2.5s infinite linear;
+  z-index: 3;
+}
+.btn-ice .charge-bar { background: linear-gradient(to right, #ffffff, #88ddff, #0055cc); box-shadow: 0 -1px 6px #33aaff; }
+@keyframes chargeUp {
+  0%   { width: 0%; opacity: 0.2; }
+  10%  { opacity: 1; }
+  80%  { width: 100%; opacity: 1; }
+  90%  { width: 100%; opacity: 0; }
+  100% { width: 0%; opacity: 0; }
+}
+
+.btn-ember { animation: emberFlicker 0.15s infinite alternate ease-in-out; }
+@keyframes emberFlicker {
+  0%   { filter: brightness(0.95) contrast(1); }
+  100% { filter: brightness(1.1) contrast(1.05); box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 0 18px rgba(255,100,0,0.6); }
+}
+
+/* ── Toggle JS ── */
+.btn-toggle { cursor: pointer; }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .container { padding: 0 16px 60px; }
+  .nav { padding: 0 16px; }
+  .demo-area { padding: 20px 16px; }
+  .card { padding: 18px 16px; }
+  .hero { padding: 48px 16px 40px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-badge">CSS Framework • v2026</div>
+  <h1>Aero Elemental Buttons</h1>
+  <p>Sistema avanzado de botones con efectos Aero Glass, gradientes multicapa, reflejos cristalinos y animaciones elementales.</p>
+  <div class="hero-actions">
+    <button class="btn-aero-fire btn-lg">🔥 Inferno</button>
+    <button class="btn-aero-fire btn-ice btn-lg">❄️ Cryo Ice</button>
+    <button class="btn-aero-fire btn-gold btn-lg">🏆 Molten Gold</button>
+  </div>
+</div>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav">
+  <a href="#intro">Introducción</a>
+  <a href="#variantes">Variantes</a>
+  <a href="#tamanios">Tamaños</a>
+  <a href="#animaciones">Animaciones</a>
+  <a href="#toggle">Toggle</a>
+  <a href="#iconos">Iconos</a>
+  <a href="#estados">Estados</a>
+  <a href="#referencia">Referencia</a>
+  <a href="#ejemplo">Ejemplo</a>
+</nav>
+
+<!-- ═══ MAIN ═══ -->
+<div class="container">
+
+  <!-- INTRO -->
+  <section class="section" id="intro">
+    <div class="section-header">
+      <span class="section-label">01</span>
+      <h2 class="section-title">Introducción</h2>
+    </div>
+    <div class="card">
+      <p>
+        <strong>Aero Elemental Buttons</strong> es una colección de botones CSS premium con animaciones,
+        efectos de brillo, reflejos Aero Glass, gradientes multicapa y variantes temáticas.
+        Inspirado en la estética Windows Aero, Crystal UI y efectos elementales de la naturaleza.
+      </p>
+      <p>Para usar, incluye el archivo <code>style.css</code> y aplica la clase base <code>.btn-aero-fire</code>
+        junto a las clases modificadoras que necesites.</p>
+      <div class="tags">
+        <span class="tag">🔥 Inferno</span>
+        <span class="tag">🪨 Obsidian</span>
+        <span class="tag">🏆 Molten Gold</span>
+        <span class="tag">❄️ Cryo Ice</span>
+        <span class="tag">👻 Ghost Flame</span>
+        <span class="tag">⚡ Pulse</span>
+        <span class="tag">🔥 Ember</span>
+        <span class="tag">🔋 Charge</span>
+        <span class="tag">🔄 Toggle</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- VARIANTES -->
+  <section class="section" id="variantes">
+    <div class="section-header">
+      <span class="section-label">02</span>
+      <h2 class="section-title">Variantes</h2>
+    </div>
+    <div class="demo-area">
+      <div class="demo-label">Vista previa</div>
+      <div class="grid">
+        <button class="btn-aero-fire">Inferno</button>
+        <button class="btn-aero-fire btn-obsidian">Obsidian</button>
+        <button class="btn-aero-fire btn-gold">Molten Gold</button>
+        <button class="btn-aero-fire btn-ice">Cryo Ice</button>
+        <button class="btn-aero-fire btn-ghost">Ghost Flame</button>
+      </div>
+    </div>
+    <div class="code-block"><span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn-aero-fire"</span><span class="tag">&gt;</span>Inferno<span class="tag">&lt;/button&gt;</span>
+
+<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn-aero-fire btn-obsidian"</span><span class="tag">&gt;</span>Obsidian<span class="tag">&lt;/button&gt;</span>
+
+<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn-aero-fire btn-gold"</span><span class="tag">&gt;</span>Molten Gold<span class="tag">&lt;/button&gt;</span>
+
+<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn-aero-fire btn-ice"</span><span class="tag">&gt;</span>Cryo Ice<span class="tag">&lt;/button&gt;</span>
+
+<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn-aero-fire btn-ghost"</span><span class="tag">&gt;</span>Ghost Flame<span class="tag">&lt;/button&gt;</span></div>
+  </section>
+
+  <!-- TAMAÑOS -->
+  <section class="section" id="tamanios">
+    <div class="section-header">
+      <span class="section-label">03</span>
+      <h2 class="section-title">Tamaños</h2>
+    </div>
+    <div class="demo-area">
+      <div class="demo-label">Vista previa</div>
+      <div class="grid" style="align-items: center;">
+        <button class="btn-aero-fire btn-sm">Small</button>
+        <button class="btn-aero-fire">Base</button>
+        <button class="btn-aero-fire btn-lg">Large</button>
+        <button class="btn-aero-fire btn-xl">Extra Large</button>
+      </div>
+    </div>
+    <div class="code-block"><span class="kw">/* Modificadores de tamaño */</span>
+<span class="cls">.btn-sm</span>   <span class="kw">→</span> 11px · padding 5px 14px  · h26px
+<span class="cls">.btn-aero-fire</span> <span class="kw">→</span> 13px · padding 9px 22px  · h34px  (base)
+<span class="cls">.btn-lg</span>   <span class="kw">→</span> 15px · padding 12px 32px · h44px
+<span class="cls">.btn-xl</span>   <span class="kw">→</span> 17px · padding 15px 44px · h52px
+<span class="cls">.btn-wide</span> <span class="kw">→</span> width: 100%</div>
+  </section>
+
+  <!-- ANIMACIONES -->
+  <section class="section" id="animaciones">
+    <div class="section-header">
+      <span class="section-label">04</span>
+      <h2 class="section-title">Animaciones</h2>
+    </div>
+    <div class="demo-area">
+      <div class="demo-label">Vista previa</div>
+      <div class="grid">
+        <button class="btn-aero-fire btn-pulse">⚡ Pulse</button>
+        <button class="btn-aero-fire btn-ice btn-pulse">❄️ Ice Pulse</button>
+        <button class="btn-aero-fire btn-ember">🔥 Ember</button>
+        <button class="btn-aero-fire btn-charge">
+          <span>🔋 Charging</span>
+          <div class="charge-bar"></div>
+        </button>
+        <button class="btn-aero-fire btn-ice btn-charge">
+          <span>❄️ Cryo Charge</span>
+          <div class="charge-bar"></div>
+        </button>
+      </div>
+    </div>
+    <div class="code-block"><span class="kw">/* Pulso de brillo continuo */</span>
+<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn-aero-fire btn-pulse"</span><span class="tag">&gt;</span>Pulse<span class="tag">&lt;/button&gt;</span>
+
+<span class="kw">/* Parpadeo termo-cristalino */</span>
+<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn-aero-fire btn-ember"</span><span class="tag">&gt;</span>Ember<span class="tag">&lt;/button&gt;</span>
+
+<span class="kw">/* Barra de carga inferior */</span>
+<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn-aero-fire btn-charge"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;span&gt;</span>Charging<span class="tag">&lt;/span&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"charge-bar"</span><span class="tag">&gt;&lt;/div&gt;</span>
+<span class="tag">&lt;/button&gt;</span></div>
+  </section>
+
+  <!-- TOGGLE -->
+  <section class="section" id="toggle">
+    <div class="section-header">
+      <span class="section-label">05</span>
+      <h2 class="section-title">Toggle</h2>
+    </div>
+    <div class="demo-area">
+      <div class="demo-label">Haz click para cambiar estado</div>
+      <div class="grid">
+        <button class="btn-aero-fire btn-toggle" onclick="this.classList.toggle('on'); this.textContent = this.classList.contains('on') ? '✅ Toggle ON' : '🔄 Toggle OFF'">🔄 Toggle OFF</button>
+        <button class="btn-aero-fire btn-toggle on" onclick="this.classList.toggle('on'); this.textContent = this.classList.contains('on') ? '✅ Toggle ON' : '🔄 Toggle OFF'">✅ Toggle ON</button>
+      </div>
+    </div>
+    <div class="code-block"><span class="kw">/* Estado OFF (por defecto) */</span>
+<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn-aero-fire btn-toggle"</span><span class="tag">&gt;</span>Toggle OFF<span class="tag">&lt;/button&gt;</span>
+
+<span class="kw">/* Estado ON — añade clase .on */</span>
+<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn-aero-fire btn-toggle on"</span><span class="tag">&gt;</span>Toggle ON<span class="tag">&lt;/button&gt;</span>
+
+<span class="kw">/* Toggle interactivo con JS */</span>
+btn.addEventListener(<span class="str">'click'</span>, () =&gt; btn.classList.toggle(<span class="str">'on'</span>));</div>
+  </section>
+
+  <!-- ICONOS -->
+  <section class="section" id="iconos">
+    <div class="section-header">
+      <span class="section-label">06</span>
+      <h2 class="section-title">Iconos</h2>
+    </div>
+    <div class="demo-area">
+      <div class="demo-label">Vista previa</div>
+      <div class="grid">
+        <button class="btn-aero-fire btn-icon">
+          <span class="ico">🔥</span><span>Inferno</span>
+        </button>
+        <button class="btn-aero-fire btn-icon btn-ice">
+          <span class="ico">❄️</span><span>Cryo</span>
+        </button>
+        <button class="btn-aero-fire btn-icon btn-gold">
+          <span class="ico">🏆</span><span>Gold</span>
+        </button>
+        <button class="btn-aero-fire btn-icon btn-obsidian">
+          <span class="ico">🪨</span><span>Obsidian</span>
+        </button>
+        <button class="btn-aero-fire btn-icon btn-ghost">
+          <span class="ico">👻</span><span>Ghost</span>
+        </button>
+      </div>
+    </div>
+    <div class="code-block"><span class="kw">/* Usar .btn-icon con elementos internos */</span>
+<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn-aero-fire btn-icon"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="str">"ico"</span><span class="tag">&gt;</span>🔥<span class="tag">&lt;/span&gt;</span>
+  <span class="tag">&lt;span&gt;</span>Inferno<span class="tag">&lt;/span&gt;</span>
+<span class="tag">&lt;/button&gt;</span></div>
+  </section>
+
+  <!-- ESTADOS -->
+  <section class="section" id="estados">
+    <div class="section-header">
+      <span class="section-label">07</span>
+      <h2 class="section-title">Estados</h2>
+    </div>
+    <div class="demo-area">
+      <div class="demo-label">Disabled — todos los temas</div>
+      <div class="grid">
+        <button class="btn-aero-fire" disabled>Inferno</button>
+        <button class="btn-aero-fire btn-obsidian" disabled>Obsidian</button>
+        <button class="btn-aero-fire btn-gold" disabled>Gold</button>
+        <button class="btn-aero-fire btn-ice" disabled>Ice</button>
+        <button class="btn-aero-fire btn-ghost" disabled>Ghost</button>
+      </div>
+    </div>
+    <div class="code-block"><span class="kw">/* Atributo HTML nativo */</span>
+<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn-aero-fire"</span> <span class="attr">disabled</span><span class="tag">&gt;</span>Disabled<span class="tag">&lt;/button&gt;</span>
+
+<span class="kw">/* Clase CSS equivalente */</span>
+<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn-aero-fire disabled"</span><span class="tag">&gt;</span>Disabled<span class="tag">&lt;/button&gt;</span></div>
+  </section>
+
+  <!-- REFERENCIA -->
+  <section class="section" id="referencia">
+    <div class="section-header">
+      <span class="section-label">08</span>
+      <h2 class="section-title">Referencia de Clases</h2>
+    </div>
+    <table class="ref-table">
+      <thead>
+        <tr>
+          <th>Clase</th>
+          <th>Tipo</th>
+          <th>Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>.btn-aero-fire</td><td>Base</td><td>Clase requerida. Botón Inferno (fuego base).</td></tr>
+        <tr><td>.btn-obsidian</td><td>Variante</td><td>Tema carbón volcánico oscuro.</td></tr>
+        <tr><td>.btn-gold</td><td>Variante</td><td>Tema oro líquido con reflejos cálidos.</td></tr>
+        <tr><td>.btn-ice</td><td>Variante</td><td>Tema hielo cristalino azul polar.</td></tr>
+        <tr><td>.btn-ghost</td><td>Variante</td><td>Tema semitransparente fantasmal.</td></tr>
+        <tr><td>.btn-sm</td><td>Tamaño</td><td>Pequeño (11px / 26px alto).</td></tr>
+        <tr><td>.btn-lg</td><td>Tamaño</td><td>Grande (15px / 44px alto).</td></tr>
+        <tr><td>.btn-xl</td><td>Tamaño</td><td>Extra grande (17px / 52px alto).</td></tr>
+        <tr><td>.btn-wide</td><td>Tamaño</td><td>Ancho 100% del contenedor.</td></tr>
+        <tr><td>.btn-pulse</td><td>Animación</td><td>Pulso luminoso continuo (alterna con .btn-ice).</td></tr>
+        <tr><td>.btn-ember</td><td>Animación</td><td>Parpadeo rápido termo-cristalino.</td></tr>
+        <tr><td>.btn-charge</td><td>Animación</td><td>Barra de carga inferior. Requiere <code>&lt;div class="charge-bar"&gt;</code> interno.</td></tr>
+        <tr><td>.btn-toggle</td><td>Estado</td><td>Botón interruptor. Añade <code>.on</code> para activar (verde).</td></tr>
+        <tr><td>.btn-icon</td><td>Layout</td><td>Soporte de icono + texto. Usa <code>&lt;span class="ico"&gt;</code>.</td></tr>
+        <tr><td>.disabled</td><td>Estado</td><td>Alternativa CSS al atributo <code>disabled</code>.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- EJEMPLO COMPLETO -->
+  <section class="section" id="ejemplo">
+    <div class="section-header">
+      <span class="section-label">09</span>
+      <h2 class="section-title">Ejemplo Completo</h2>
+    </div>
+    <div class="demo-area">
+      <div class="demo-label">Demo combinada</div>
+      <div class="grid" style="margin-bottom:16px;">
+        <button class="btn-aero-fire btn-gold btn-icon btn-lg">
+          <span class="ico">🏆</span><span>Confirmar</span>
+        </button>
+        <button class="btn-aero-fire btn-ice btn-pulse">❄️ Procesando</button>
+        <button class="btn-aero-fire btn-toggle on" onclick="this.classList.toggle('on')">✅ Activo</button>
+        <button class="btn-aero-fire btn-ghost btn-sm">👻 Cancelar</button>
+      </div>
+      <div class="grid">
+        <button class="btn-aero-fire btn-obsidian btn-charge btn-lg">
+          <span>🪨 Cargando</span>
+          <div class="charge-bar"></div>
+        </button>
+        <button class="btn-aero-fire btn-ember btn-icon">
+          <span class="ico">🔥</span><span>Ember</span>
+        </button>
+        <button class="btn-aero-fire btn-xl btn-wide" style="margin-top:12px;">
+          🔥 Llamada a la Acción — Extra Large Wide
+        </button>
+      </div>
+    </div>
+    <div class="code-block"><span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn-aero-fire btn-gold btn-icon btn-lg"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="str">"ico"</span><span class="tag">&gt;</span>🏆<span class="tag">&lt;/span&gt;</span><span class="tag">&lt;span&gt;</span>Confirmar<span class="tag">&lt;/span&gt;</span>
+<span class="tag">&lt;/button&gt;</span>
+
+<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn-aero-fire btn-ice btn-pulse"</span><span class="tag">&gt;</span>❄️ Procesando<span class="tag">&lt;/button&gt;</span>
+
+<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn-aero-fire btn-obsidian btn-charge btn-lg"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;span&gt;</span>🪨 Cargando<span class="tag">&lt;/span&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="str">"charge-bar"</span><span class="tag">&gt;&lt;/div&gt;</span>
+<span class="tag">&lt;/button&gt;</span>
+
+<span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="str">"btn-aero-fire btn-xl btn-wide"</span><span class="tag">&gt;</span>
+  🔥 Llamada a la Acción
+<span class="tag">&lt;/button&gt;</span></div>
+  </section>
+
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <span>Aero Elemental Buttons</span> Framework &nbsp;·&nbsp; Version 2026 &nbsp;·&nbsp; CSS Pure
+</footer>
+
+</body>
+</html>
